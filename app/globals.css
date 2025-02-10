@@ -4,8 +4,10 @@
 
 
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-color: #191919 !important;
+    background-color: #1e1e1e !important;
+    color: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
