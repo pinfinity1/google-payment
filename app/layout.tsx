@@ -24,7 +24,7 @@ export default function RootLayout({
             className={lexend.className}
         >
         <Header/>
-        <main className={"w-full min-h-[calc(100dvh_-_124px)] px-4 md:px-20"}>
+        <main className={"w-full max-w-[1596px] mx-auto min-h-[calc(100dvh_-_124px)] px-4 md:px-20"}>
             {children}
         </main>
         <Footer/>
