@@ -1,5 +1,4 @@
 "use client"
-import Image from "next/image";
 import {useParams} from "next/navigation";
 import SignupComp from "@/Components/Auth/SignupComp";
 import LoginComp from "@/Components/Auth/LoginComp";
@@ -7,7 +6,6 @@ import LoginComp from "@/Components/Auth/LoginComp";
 
 export default function AuthPage() {
     const {slug} = useParams();
-
     
     return (
         <main className={"w-full flex items-center justify-center"}>
@@ -18,8 +16,7 @@ export default function AuthPage() {
                 ) : (
                     <SignupComp/>
                 )}
-                <Image className={"absolute top-0 right-0 "} src={"/toprightspread.png"} width={280} height={280}
-                       alt={"png element"}/>
+                <div className={"absolute top-0 right-0 bg-[url('/top-right-spread.png')] w-[160px] h-[160px]"}></div>
             </div>
         </main>
     )
