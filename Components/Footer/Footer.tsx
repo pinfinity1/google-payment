@@ -6,7 +6,7 @@ export default function Footer() {
                 className={"w-full h-full max-w-[1596px] mx-auto flex flex-col items-center gap-6 lg:gap-10 pt-12 lg:pt-[60px] pb-8 px-4 lg:px-[80px] 2xl:px-[162px] "}>
                 <h3 className={"text-2xl font-bold"}>LOGO</h3>
                 <div className={"text-[10px] md:text-base flex items-center gap-6"}>
-                    <span>Avantages</span>
+                    <span>Advantages</span>
                     <span>Who for</span>
                     <span>How it Works</span>
                     <span>Contact</span>
