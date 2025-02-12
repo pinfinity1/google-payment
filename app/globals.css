@@ -6,6 +6,7 @@
 body {
     background-color: #1e1e1e !important;
     color: #FFF;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;

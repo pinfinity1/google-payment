@@ -6,7 +6,7 @@ import LoginComp from "@/Components/Auth/LoginComp";
 
 export default function AuthPage() {
     const {slug} = useParams();
-    
+
     return (
         <main className={"w-full flex items-center justify-center"}>
             <div

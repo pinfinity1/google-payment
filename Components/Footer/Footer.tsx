@@ -1,7 +1,10 @@
+import Link from "next/link";
+
+
 export default function Footer() {
     return (
         <div
-            className={"w-full flex-grow bg-grey-shade-11"}>
+            className={"w-full bg-grey-shade-11"}>
             <div
                 className={"w-full h-full max-w-[1596px] mx-auto flex flex-col items-center gap-6 lg:gap-10 pt-12 lg:pt-[60px] pb-8 px-4 lg:px-[80px] 2xl:px-[162px] "}>
                 <h3 className={"text-2xl font-bold"}>LOGO</h3>
@@ -15,7 +18,15 @@ export default function Footer() {
                 <div
                     className={"w-full bg-grey-shade-10 text-grey-shade-70 font-light flex flex-col gap-5 lg:flex-row items-center justify-center lg:justify-between p-6 rounded-xl lg:rounded-full"}>
                     <div><span className={"text-xl font-bold"}>LOGO</span> All Rights Reserved</div>
-                    <div>Privacy Policy <span className={"mx-3"}>|</span> Terms of Service</div>
+                    <div>
+                        <Link className={"hover:text-pr-green-60 transition-all duration-150"} href={"/privacy-policy"}>
+                            Privacy Policy
+                        </Link>
+                        <span className={"mx-3"}>|</span>
+                        <Link className={"hover:text-pr-green-60 transition-all duration-150"} href={"/user-agreement"}>
+                            User Agreement
+                        </Link>
+                    </div>
                 </div>
                 <div className={"w-full h-[1px] bg-grey-shade-15 rounded"}></div>
             </div>
