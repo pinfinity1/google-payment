@@ -1,7 +1,7 @@
 "use client"
 import {useParams} from "next/navigation";
-import SignupComp from "@/Components/Auth/SignupComp";
-import LoginComp from "@/Components/Auth/LoginComp";
+import SignupComp from "@/components/Auth/SignupComp";
+import LoginComp from "@/components/Auth/LoginComp";
 
 
 export default function AuthPage() {
