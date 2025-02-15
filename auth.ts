@@ -1,6 +1,5 @@
-import NextAuth, {type Session, type User} from "next-auth";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import {JWT} from "@auth/core/jwt";
 
 
 export const {handlers, signIn, signOut, auth} = NextAuth({
@@ -8,14 +7,14 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
         CredentialsProvider({
             name: "credentials",
             credentials: {
-                email: {label: "Email", type: "email", required: true},
-                password: {label: "Password", type: "password", required: true},
+                email: {},
+                password: {},
             },
         }),
     ],
     
     callbacks: {
-        async jwt ({token, user}: { token: JWT, user: User }) {
+        jwt ({token, user}) {
             if(user) {
                 return {
                     ...token,
@@ -24,12 +23,8 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
             }
             return token;
         },
-        async session ({session, token}: { session: Session, token: JWT }) {
-            session.user = {
-                id: token.id as string,
-                name: token.name as string,
-                email: token.email as string,
-            };
+        session ({session, token}) {
+            session.user.id = token.token as string
             return session;
         },
     },

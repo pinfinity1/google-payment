@@ -5,6 +5,10 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
 import {passwordSchema} from "@/validation/passwordSchema";
+import {useMutation} from "@tanstack/react-query";
+import {loginUser} from "@/api/auth";
+import {useState} from "react";
+import {Eye, EyeOff} from "lucide-react";
 
 
 const loginFormSchema = z.object({
@@ -14,6 +18,8 @@ const loginFormSchema = z.object({
 
 
 export default function LoginComp () {
+    const [showPassword, setShowPassword] = useState(false);
+    
     const form = useForm<z.infer<typeof loginFormSchema>>({
         resolver: zodResolver(loginFormSchema),
         defaultValues: {
@@ -22,8 +28,29 @@ export default function LoginComp () {
         }
     })
     
+    
+    const {mutateAsync: sendLoginForm, isPending, isError} = useMutation({
+        mutationFn: loginUser,
+        onSuccess: (data) => {
+            console.log('Login successful:', data);
+        },
+        onError: (error: Error) => {
+            console.error('Login error:', error.message);
+        },
+    });
+    
+    
     const loginSubmit = async (data: z.infer<typeof loginFormSchema>) => {
-        console.log(data);
+        try {
+            const result = await sendLoginForm(data);
+            console.log('Login successful:', result);
+        } catch (error) {
+            if(error instanceof Error) {
+                console.error('Login error:', error.message);
+            } else {
+                console.error('Login error:', 'An unknown error occurred');
+            }
+        }
     }
     
     
@@ -57,8 +84,23 @@ export default function LoginComp () {
                                 <FormItem className={"w-full xl:w-1/2 text-left"}>
                                     <FormLabel>Password</FormLabel>
                                     <FormControl>
-                                        <Input {...field} type={"password"} placeholder="Enter your Password"
-                                               className={"w-full p-4 text-base bg-grey-shade-10 rounded-xl placeholder:text-grey-shade-35 border border-grey-shade-15 focus:outline-none tracking-wide"}/>
+                                        <div className={"relative"}>
+                                            <Input {...field} type={showPassword ? "text" : "password"}
+                                                   placeholder="Enter your Password"
+                                                   className={"w-full p-4 text-base bg-grey-shade-10 rounded-xl placeholder:text-grey-shade-35 border border-grey-shade-15 focus:outline-none tracking-wide"}/>
+                                            <span
+                                                onClick={() => setShowPassword(prev => !prev)}
+                                                className="group absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 cursor-pointer"
+                                            >
+                                               {showPassword ? (
+                                                   <EyeOff
+                                                       className="h-5 w-5 text-grey-shade-35 group-hover:text-pr-green-60"/>
+                                               ) : (
+                                                   <Eye
+                                                       className="h-5 w-5 text-grey-shade-35 group-hover:text-pr-green-60"/>
+                                               )}
+                                            </span>
+                                        </div>
                                     </FormControl>
                                     <FormMessage/>
                                 </FormItem>
@@ -66,7 +108,7 @@ export default function LoginComp () {
                         />
                     </div>
                     <div className={"w-full lg:max-w-[400px] mx-auto flex flex-col items-center gap-5 sm:px-20 lg:p-0"}>
-                        <CustomButton type={"submit"}>Log in</CustomButton>
+                        <CustomButton type={"submit"}>{isPending ? "..." : "Log in"}</CustomButton>
                         <CustomButton href={"/auth/signup"}>Sign Up</CustomButton>
                     </div>
                 </form>
