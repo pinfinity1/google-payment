@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 
-export default function Custom404() {
+export default function Custom404 () {
     return (
         <main className={"w-full flex flex-col lg:flex-row-reverse items-center justify-center lg:justify-between"}>
             <div className={"w-1/2"}>
-                <Image className={" w-full my-12"} priority width={160} height={160} src={"/warning404.svg"}
+                <Image className={"w-2/3 my-12"} priority width={160} height={160} src={"/warning404.svg"}
                        alt={"404"}/>
             </div>
             <div className={"w-1/2 flex flex-col items-center justify-center gap-5"}>

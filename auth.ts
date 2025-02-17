@@ -12,21 +12,20 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
             },
         }),
     ],
-    
+    pages: {
+        signIn: "/auth/login",
+    },
+    session: {
+        strategy: "jwt",
+    },
     callbacks: {
-        jwt ({token, user}) {
-            if(user) {
-                return {
-                    ...token,
-                    ...user
-                };
-            }
-            return token;
+        async jwt ({token, user}) {
+            return {...token, ...user}
         },
-        session ({session, token}) {
-            session.user.id = token.token as string
-            return session;
-        },
+        async session ({session, token}) {
+            session.user = token as any
+            return session
+        }
     },
     trustHost: true,
 });
