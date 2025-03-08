@@ -2,11 +2,12 @@ import axios, {AxiosInstance} from "axios";
 
 
 const client: AxiosInstance = axios.create({
-    baseURL: "http://localhost/api",
+    baseURL: process.env.API_URL || "http://localhost:5001/api/",
     headers: {
         'Content-Type': 'application/json',
     },
 });
+
 
 
 // client.interceptors.response.use(

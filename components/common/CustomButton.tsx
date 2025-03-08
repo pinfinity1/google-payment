@@ -20,6 +20,6 @@ export default function CustomButton(props: ButtonProps | LinkProps) {
         return <Link className={"w-full bg-grey-shade-15 py-4 rounded-xl"} {...props} />
     }
     return (
-        <button className={"w-full bg-pr-green-60 text-black py-4 rounded-xl"} {...props}/>
+        <button className={"w-full bg-pr-green-60 text-black py-4 rounded-xl disabled:bg-pr-green-60/70 disabled:cursor-not-allowed transition-all duration-150"} {...props}/>
     )
 }
