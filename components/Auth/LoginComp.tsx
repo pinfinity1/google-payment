@@ -42,7 +42,6 @@ export default function LoginComp ({showVerifyOTP, setEmail}: LoginCompProps) {
         onSuccess: (data) => {
             toast({
                 title: "Login successfully",
-                description: data?.message,
             });
             setEmail(form.getValues().email);
             // console.log(form.getValues().email);
